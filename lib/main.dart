@@ -1,10 +1,13 @@
 import 'root/root.dart';
 
 void main() => runApp(
-  const MaterialApp(
-    home: Tester(widget: Text("data"),),
-  )
-);
+      const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Tester(
+          widget: Text("data"),
+        ),
+      ),
+    );
 
 class Tester extends StatelessWidget {
   const Tester({Key? key, required this.widget}) : super(key: key);
@@ -12,11 +15,25 @@ class Tester extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
+
     return Scaffold(
       body: Center(
-        child: widget,
+        child: TextFormField().toFormFieldFullUp(
+          controller: controller,
+          onChanged: (value) {
+            print(value);
+          },
+          kyboardType: TextInputType.text,
+          onTap: () {
+            print('hiiiii');
+          },
+          decoration: const InputDecoration(
+            filled: true,
+            fillColor: Colors.teal,
+          ),
+        ),
       ),
     );
   }
 }
-
